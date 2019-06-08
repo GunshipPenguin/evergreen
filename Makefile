@@ -7,7 +7,7 @@ BIN_DIR=bin
 
 BIN_NAME=evergreen
 
-ARCH=x86
+ARCH=i386
 
 ARCH_OBJ_FILES=$(addsuffix .o, $(basename $(wildcard kernel/arch/$(ARCH)/*.[S,c])))
 OBJ_FILES=$(addsuffix .o, \
