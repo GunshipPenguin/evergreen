@@ -1,6 +1,6 @@
 CC=$(HOME)/cross/bin/i686-elf-gcc
 
-CFLAGS=-ffreestanding -nostdlib -std=gnu99 -Wall -Wextra 
+CFLAGS=-ffreestanding -nostdlib -std=gnu99 -Wall -Wextra -I kernel/src/include
 
 OBJ_DIR=obj
 BIN_DIR=bin
@@ -10,11 +10,13 @@ BIN_NAME=evergreen
 ARCH=x86
 
 ARCH_OBJ_FILES=$(addsuffix .o, $(basename $(wildcard kernel/arch/$(ARCH)/*.[S,c])))
-OBJ_FILES=$(addsuffix .o, $(basename $(wildcard kernel/src/*.c)))
+OBJ_FILES=$(addsuffix .o, \
+$(basename $(wildcard kernel/src/*.c)) \
+$(basename $(wildcard kernel/src/libk/*.c)))
 
-.PHONY: all clean
+.PHONY: all clean output_dirs
 
-all: output_dirs $(BIN_NAME) 
+all: output_dirs $(BIN_NAME)
 
 evergreen: $(ARCH_OBJ_FILES) $(OBJ_FILES)
 				@echo $(ARCH_OBJ_FILES)

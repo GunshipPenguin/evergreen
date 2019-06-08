@@ -1,6 +1,9 @@
 #!/bin/bash
 
-make
+if ! make; then
+  echo "Make failed"
+  exit 1
+fi
 
 mkdir -p isodir
 mkdir -p isodir/boot
